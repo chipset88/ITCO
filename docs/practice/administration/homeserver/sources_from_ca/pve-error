@@ -1,0 +1,4 @@
+cat /var/log/journal/b3a990764f4d44a4b99a7c4a1a581e84/system.journal :
+
+
+SYSLOG_RAW=<27>Feb 20 00:12:06 pveproxy[1700]: /etc/pve/local/pveproxy-ssl.key: failed to load local private key (key_file or key) at /usr/share/perl5/PVE/APIServer/AnyEvent.pm line 1899.

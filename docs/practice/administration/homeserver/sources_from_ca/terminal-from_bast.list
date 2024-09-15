@@ -1,0 +1,133 @@
+[20:37:13]p_boyko@bast:~/easy-rsa
+$ ./easyrsa import-req /tmp/pve-ssl.req node1
+Using SSL: openssl OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
+
+The request has been successfully imported with a short name of: node1
+You may now use this name to perform signing operations on this request.
+
+
+
+[20:56:02]p_boyko@bast:~/easy-rsa
+$ ./easyrsa sign-req server node1
+Using SSL: openssl OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
+
+
+You are about to sign the following certificate.
+Please check over the details shown below for accuracy. Note that this request
+has not been cryptographically verified. Please be sure it came from a trusted
+source or that you have verified the request checksum with the sender.
+
+Request subject, to be signed as a server certificate for 825 days:
+
+subject=
+    countryName               = RU
+    stateOrProvinceName       = Samara Region
+    localityName              = Samara
+    organizationName          = Pavel Boyko
+    organizationalUnitName    = Private Computer Infrastructure
+    commonName                = node1.aprt
+    emailAddress              = jwbpa@yandex.ru
+
+
+Type the word 'yes' to continue, or any other input to abort.
+  Confirm request details: yes
+Using configuration from /home/p_boyko/easy-rsa/pki/easy-rsa-30087.SsTWZe/tmp.uVyb4D
+Enter pass phrase for /home/p_boyko/easy-rsa/pki/private/ca.key:
+Could not read CA private key from /home/p_boyko/easy-rsa/pki/private/ca.key
+4097CF564B7F0000:error:1608010C:STORE routines:ossl_store_handle_load_result:unsupported:../crypto/store/store_result.c:151:
+4097CF564B7F0000:error:1C800064:Provider routines:ossl_cipher_unpadblock:bad decrypt:../providers/implementations/ciphers/ciphercommon_block.c:124:
+4097CF564B7F0000:error:11800074:PKCS12 routines:PKCS12_pbe_crypt_ex:pkcs12 cipherfinal error:../crypto/pkcs12/p12_decr.c:86:maybe wrong password
+
+Easy-RSA error:
+
+signing failed (openssl output above may have more detail)
+
+
+[20:57:12]p_boyko@bast:~/easy-rsa
+$ ./easyrsa sign-req server node1
+Using SSL: openssl OpenSSL 3.0.2 15 Mar 2022 (Library: OpenSSL 3.0.2 15 Mar 2022)
+
+
+You are about to sign the following certificate.
+Please check over the details shown below for accuracy. Note that this request
+has not been cryptographically verified. Please be sure it came from a trusted
+source or that you have verified the request checksum with the sender.
+
+Request subject, to be signed as a server certificate for 825 days:
+
+subject=
+    countryName               = RU
+    stateOrProvinceName       = Samara Region
+    localityName              = Samara
+    organizationName          = Pavel Boyko
+    organizationalUnitName    = Private Computer Infrastructure
+    commonName                = node1.aprt
+    emailAddress              = jwbpa@yandex.ru
+
+
+Type the word 'yes' to continue, or any other input to abort.
+  Confirm request details: yes
+Using configuration from /home/p_boyko/easy-rsa/pki/easy-rsa-30148.OrdWUK/tmp.gOCMUJ
+Enter pass phrase for /home/p_boyko/easy-rsa/pki/private/ca.key:
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'RU'
+stateOrProvinceName   :ASN.1 12:'Samara Region'
+localityName          :ASN.1 12:'Samara'
+organizationName      :ASN.1 12:'Pavel Boyko'
+organizationalUnitName:ASN.1 12:'Private Computer Infrastructure'
+commonName            :ASN.1 12:'node1.aprt'
+emailAddress          :IA5STRING:'jwbpa@yandex.ru'
+Certificate is to be certified until May 25 16:57:45 2025 GMT (825 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+Certificate created at: /home/p_boyko/easy-rsa/pki/issued/node1.crt
+
+
+
+[20:57:45]p_boyko@bast:~/easy-rsa
+$ mkdir ../for_node1
+
+[20:58:23]p_boyko@bast:~/easy-rsa
+$ cp /home/p_boyko/easy-rsa/pki/issued/node1.crt ../for_node1/
+
+[20:58:42]p_boyko@bast:~/easy-rsa
+$ cp /tmp/ ../for_node1/
+.font-unix/
+.ICE-unix/
+pve-ssl.req
+snap-private-tmp/
+systemd-private-043df42aae984f9eba0954e5bb83cebd-systemd-logind.service-vAj3yz/
+systemd-private-043df42aae984f9eba0954e5bb83cebd-systemd-resolved.service-uLq75M/
+systemd-private-043df42aae984f9eba0954e5bb83cebd-systemd-timesyncd.service-fRCvMr/
+systemd-private-043df42aae984f9eba0954e5bb83cebd-upower.service-5F93YC/
+.Test-unix/
+web-test.req
+.X11-unix/
+.XIM-unix/
+
+[20:58:42]p_boyko@bast:~/easy-rsa
+$ vim ../for_node1/node1.key
+
+[21:00:33]p_boyko@bast:~/easy-rsa
+$ cd ../for_node1/
+
+[21:01:27]p_boyko@bast:~/for_node1
+$ ll
+total 20
+drwxrwxr-x 2 p_boyko p_boyko 4096 фев 20 21:00 .
+drwxr-x--- 8 p_boyko p_boyko 4096 фев 20 21:00 ..
+-rw------- 1 p_boyko p_boyko 4938 фев 20 20:58 node1.crt
+-rw-rw-r-- 1 p_boyko p_boyko 1679 фев 20 21:00 node1.key
+
+[21:01:33]p_boyko@bast:~/for_node1
+$ cd
+
+[21:01:52]p_boyko@bast:~
+$ scp -r for_node1/ p_boyko@192.168.2.101:~/ca-certs/node1
+p_boyko@192.168.2.101's password: 
+node1.key                                                                                              100% 1679     1.5MB/s   00:00    
+node1.crt                                                                                              100% 4938     4.6MB/s   00:00    

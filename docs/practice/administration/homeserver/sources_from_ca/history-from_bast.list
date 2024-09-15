@@ -1,0 +1,138 @@
+    1  exit
+    2  exit
+    3  exit
+    4  exit
+    5  dns
+    6  sudo systemctl restart named
+    7  ping nout.aprt
+    8  sudo vim /etc/netplan/00-installer-config.yaml 
+    9  sudo netplan try
+   10  ping nout.aprt
+   11  sudo apt install easy-rsa
+   12  mkdir ~/easy-rsa
+   13  exit
+   14  exit
+   15  history
+   16  sudo vim /var/lib/bind/aprt.bind 
+   17  exit
+   18  lsblk
+   19  sudo visudo
+   20  sudo apt update && sudo apt upgrade -y && sudo apt autoclean -y && sudo apt autoremove -y
+   21  sudo apt install fwupd-signed python3-distupgrade python3-software-properties software-properties-common ubuntu-release-upgrader-core
+   22  git config --global user.email "hunwiss89@gmail.com"
+   23  git config --global user.name "boyko1989"
+   24  ssh-keygen
+   25  vim .vimrc
+   26  vim .bashrc
+   27  > .bashrc
+   28  vim .bashrc
+   29  source .bashrc
+   30  sudo apt update
+   31  sudo apt install bind9
+   32  sudo systemctl stop bind9
+   33  sudo vim /etc/bind/named.conf.options
+   34  sudo vim /etc/bind/named.conf.local
+   35  cat /etc/bind/named.conf.local
+   36  cat /etc/bind/named.conf.default-zones 
+   37  cat /etc/bind/named.conf.local 
+   38  cat /etc/bind/db.local 
+   39  sudo cp /etc/bind/db.local /etc/bind/db.aprt
+   40  sudo vim /etc/bind/db.aprt
+   41  sudo named-checkonf
+   42  named-checkconf
+   43  sudo apt install tzdata
+   44  date
+   45  sudo dpkg-reconfigure tzdata
+   46  sudo vim /etc/bind/db.aprt
+   47  sudo service bind9 start
+   48  sudo systemctl status bind9
+   49  sudo systemctl status systemd-resolved.service
+   50  sudo vim /etc/systemd/resolved.conf 
+   51  sudo systemctl enable --now systemd-resolved.service
+   52  sudo systemctl status  systemd-resolved.service 
+   53  cat /etc/resolv.conf
+   54  resolvectl status
+   55  sudo vim /etc/systemd/resolved.conf 
+   56  sudo systemctl enable --now systemd-resolved.service
+   57  sudo apt purge bind9
+   58  upd
+   59  named-checkconf /etc/bind/named.conf
+   60  sudo vim /etc/bind/named.conf
+   61  ll /var/
+   62  sudo vim /etc/bind/named.conf.local
+   63  sudo mv /var/lib/bind/sverch.bind /var/lib/bind/aprt.bind
+   64  sudo vim /etc/bind/named.conf.local
+   65  sudo vim /var/lib/bind/aprt.bind
+   66  sudo systemctl restart named
+   67  sudo vim /var/lib/bind/aprt.bind
+   68  sudo systemctl restart named
+   69  sudo apt install nginx
+   70  vim .bashrc
+   71  source .bashrc
+   72  dns
+   73  vim .bashrc
+   74  source .bashrc
+   75  dns
+   76  sudo systemctl restart named
+   77  dns
+   78  exit
+   79  ln -s /usr/share/easy-rsa/* ~/easy-rsa/
+   80  chmod 700 /home/p_boyko/easy-rsa
+   81  cd easy-rsa/
+   82  ll
+   83  ./easyrsa init-pki
+   84  vim vars
+   85  ./easyrsa build-ca
+   86  ./easyrsa build-ca nopass
+   87  ./easyrsa build-ca nopass
+   88  cat ~/easy-rsa/pki/ca.crt
+   89  cat ~/easy-rsa/pki/ca.crt | ssh p_boyko@192.168.2.102 'cat > /tmp/ca.crt'
+   90  ssh p_boyko@192.168.1.200
+   91  ssh p_boyko@192.168.2.102
+   92  exit
+   93  history
+   94  exit
+   95  history
+   96  cat ~/easy-rsa/pki/ca.crt | ssh p_boyko@192.168.0.112 'cat > /tmp/ca.crt'
+   97  cat ~/easy-rsa/pki/ca.crt | ssh root@192.168.0.112 'cat > /tmp/ca.crt'
+   98  exit
+   99  exit
+  100  dns
+  101  sudo systemctl restart named
+  102  exit
+  103  upd
+  104  cat /etc/ca
+  105  cd easy-rsa/
+  106  ll
+  107  ll pki/
+  108  ll /usr/share/easy-rsa/
+  109  vim /vars
+  110  vim vars
+  111  cp pki/ ~/
+  112  cp -r pki/ ~/
+  113  ll ~
+  114  vim vars
+  115  ./easyrsa init-pki
+  116  diff pki/ ~/pki/
+  117  ll pki/
+  118  ll ~/pki
+  119  ./easyrsa build-ca
+  120  diff pki/ ~/pki/
+  121  ll pki
+  122  ll pki/private/
+  123  cat pki/private/ca.key 
+  124  cat /etc/sudoers
+  125  sudo cat /etc/sudoers
+  126  dns
+  127  sudo systemctl restart named
+  128  dns
+  129  cat ~/easy-rsa/pki/ca.crt
+  130  ll
+  131  cat vars
+  132  ./easyrsa import-req /tmp/web-test.req web-test
+  133  ./easyrsa siggn-req server web-test
+  134  ./easyrsa sign-req server web-test
+  135  cat pki/issued/web-test.crt 
+  136  cat pki/ca.crt 
+  137  history
+  138  history | ssh p_boyko@192.168.2.101 'cat > ~/history-from_bast.list'

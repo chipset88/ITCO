@@ -1,0 +1,45 @@
+    1  sudo vim /usr/local/share/ca-certificates/ca.crt
+    2  sudo apt install vim
+    3  sudo vim /usr/local/share/ca-certificates/ca.crt
+    4  update-ca-certificates
+    5  ll /usr/local/share/ca-certificates/
+    6  sudo chown $USER:$USER /usr/local/share/ca-certificates/ca.crt
+    7  update-ca-certificates
+    8  sudo chown root:root /usr/local/share/ca-certificates/ca.crt
+    9  sudo update-ca-certificates
+   10  ll /usr/local/share/ca-certificates/
+   11  sudo vim /etc/nginx/sites-available/default 
+   12  sudo nginx -t
+   13  sudo vim /etc/nginx/sites-available/default 
+   14  ll /etc/ssk
+   15  ll /etc/ssl
+   16  ll /etc/ssl/certs/
+   17  ll /usr/local/share/ca-certificates/
+   18  sudo mv /usr/local/share/ca-certificates/ca.crt /usr/local/share/ca-certificates/p_boyko.crt
+   19  sudo ln -s /usr/local/share/ca-certificates/p_boyko.crt /etc/ssl/certs/p_boyko.crt
+   20  ll /usr/local/share/ca-certificates/ | grep p_boyko
+   21  ll /usr/local/share/ca-certificates/
+   22  ll /etc/ssl/certs/
+   23  update-ca-certificates
+   24  sudo update-ca-certificates
+   25  ll /etc/ssl/certs/
+   26  cat /etc/ssl/certs/p_boyko.pem 
+   27  cat /etc/ssl/certs/p_boyko.crt 
+   28  sudo vim /etc/nginx/sites-available/default 
+   29  sudo apt install openssl
+   30  mkdir ~/practice-csr
+   31  cd practice-csr/
+   32  openssl genrsa -out web-test.key
+   33  ll
+   34  cat web-test.key 
+   35  ll
+   36  openssl req -new -key web-test.key -out web-test.req
+   37  ll
+   38  cat web-test.req 
+   39  openssl req -in web-test.req -noout -subject
+   40  ssh p_boyko@192.168.1.200
+   41  scp web-test.req p_boyko@192.168.1.200:/tmp/web-test.req
+   42  vim /tmp/web-test.crt
+   43  vim /tmp/ca.crt
+   44  history
+   45  history > history.list

@@ -1,0 +1,56 @@
+ot@node:~# mkdir csr4node
+root@node:~# cd csr4node/
+root@node:~/csr4node# cp /etc/pve/nodes/node/pve-ssl.key .
+root@node:~/csr4node# ll
+-bash: ll: command not found
+root@node:~/csr4node# ls
+pve-ssl.key
+root@node:~/csr4node# openssl genrsa -out pve-ssl.key
+Generating RSA private key, 2048 bit long modulus (2 primes)
+...........+++++
+................+++++
+e is 65537 (0x010001)
+root@node:~/csr4node# ls
+pve-ssl.key
+root@node:~/csr4node# cp /etc/pve/nodes/node/pve-ssl.key .
+root@node:~/csr4node# openssl req -new -key pve-ssl.key -out pve-ssl.req
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:RU
+State or Province Name (full name) [Some-State]:Samara Region
+Locality Name (eg, city) []:Samara
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Pavel Boyko
+Organizational Unit Name (eg, section) []:Private Computer Infrastructure
+Common Name (e.g. server FQDN or YOUR name) []:node1.aprt
+Email Address []:jwbpa@yandex.ru
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+root@node:~/csr4node# ls
+pve-ssl.key  pve-ssl.req
+root@node:~/csr4node# scp pve-ssl.req p_boyko@bast:/tmp/pve-ssl.req
+ssh: Could not resolve hostname bast: Name or service not known
+lost connection
+root@node:~/csr4node# scp pve-ssl.req p_boyko@192.168.1.200:/tmp/pve-ssl.req
+The authenticity of host '192.168.1.200 (192.168.1.200)' can't be established.
+ECDSA key fingerprint is SHA256:6zbHz0VKtnxYrJNYUPLH1KbxPL6uc/OGMkksE3+ainY.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.1.200' (ECDSA) to the list of known hosts.
+p_boyko@192.168.1.200's password: 
+pve-ssl.req                                                                                      100% 1098     1.6MB/s   00:00    
+root@node:~/csr4node# ./easyrsa import-req /tmp/name-of-domain.req name-of-domain^C
+root@node:~/csr4node# ls
+pve-ssl.key  pve-ssl.req
+root@node:~/csr4node# cat pve-ssl.key 
+-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----
+root@node:~/csr4node# Connection to node1.aprt closed by remote host.
+Connection to node1.aprt closed.
